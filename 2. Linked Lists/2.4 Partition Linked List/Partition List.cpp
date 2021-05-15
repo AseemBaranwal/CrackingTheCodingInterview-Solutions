@@ -71,10 +71,10 @@ signed main(){
         cout << p->val << " ";
         p = p->next;
     }
-    cout << "Input k: ";
+    cout << "\nInput x: ";
     int x; cin >> x;
     head = partition(head, x);
-    cout << "\nLinked List after middle Removal: ";
+    cout << "\nLinked List after Partition: ";
     p = head;
     while(p){
         cout << p->val << " ";
