@@ -10,7 +10,7 @@
  * (6--1-->7) + (2-->9-->5) = (9-->1-->2)
  *
  * Approach:
- * We will solve the problem iteratively. Add numbers at same digits place, 
+ * We will solve the problem recursively and iteratively. Add numbers at same digits place, 
  * store the 1's digit of the output in new list and add carry in next place's addition.
  *
  * Problem Link: https://leetcode.com/problems/add-two-numbers/
@@ -32,27 +32,27 @@ class ListNode{
     }
 };
 
-ListNode *sumLists(ListNode *head1, ListNode *head2){
-    if(!head1) return head2;
-    if(!head2) return head1;
-    int carry = 0, curr = 0;
-    ListNode *p1 = head1, *p2 = head2, *dummyHead = new ListNode(-1), *p = dummyHead;
-    while(p1 or p2 or carry){
-        curr = carry;
-        if(p1){
-            curr += p1->val;
-            p1 = p1->next;
-        }
-        if(p2){
-            curr += p2->val;
-            p2 = p2->next;
-        }
-        carry = curr/10, curr = curr%10;
-        ListNode *temp = new ListNode(curr);
-        p->next = temp;
-        p = p->next;
+ListNode *sumLists(ListNode *head1, ListNode *head2, int carry = 0){
+    if(!head1 and !head2){
+        if(carry) return new ListNode(carry);
+        return head1;
     }
-    return dummyHead->next;
+    int curr = 0; ListNode *newNode = NULL;
+    if(head1 or head2 or carry){
+        curr += carry;
+        if(head1){
+            curr += head1->val;
+            head1 = head1->next;
+        }
+        if(head2){
+            curr += head2->val;
+            head2 = head2->next;
+        }
+        newNode = new ListNode(curr%10);
+        carry = curr/10;
+        newNode->next = sumLists(head1, head2, carry);
+    }
+    return newNode;
 }
 
 signed main(){
