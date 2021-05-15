@@ -6,14 +6,19 @@
  * Example:
  * 7-->1-->6 + 5-->9-->2 = 2-->1-->9
  * which is (617 + 295  = 912)
+ * Follow up:
  * What if digits are not stored in reverse order(i.e 1's digit is at tail)
  * (6--1-->7) + (2-->9-->5) = (9-->1-->2)
+ * Follow up is solved in a separate file
+ * 
+ * Problem Link: https://leetcode.com/problems/add-two-numbers/
  *
  * Approach:
  * We will solve the problem recursively and iteratively. Add numbers at same digits place, 
  * store the 1's digit of the output in new list and add carry in next place's addition.
- *
- * Problem Link: https://leetcode.com/problems/add-two-numbers/
+ * 
+ * Time Complexity : O(N + M)
+ * Space Complexity : O(M + N)
  */
 
 #include<bits/stdc++.h>
