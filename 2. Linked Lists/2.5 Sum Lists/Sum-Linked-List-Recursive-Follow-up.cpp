@@ -70,7 +70,6 @@ ListNode *sumListsUtil(ListNode *head1, ListNode *head2, int &carry){
         return NULL;
     ListNode *head = sumListsUtil((head1? head1->next: NULL), (head2? head2->next: NULL), carry);
     int curr = carry + (head1? head1->val: 0) + (head2? head2->val: 0);
-    printf("Curr: %d, carry: %d\n", curr, carry);
     head = insertAtHead(head, curr%10);
     carry = curr/10;
     return head;
@@ -78,15 +77,12 @@ ListNode *sumListsUtil(ListNode *head1, ListNode *head2, int &carry){
 
 ListNode *sumLists(ListNode *head1, ListNode *head2){
     int len1 = findLen(head1), len2 = findLen(head2), carry = 0;
-    // cout << len1 << " " << len2 << endl;
     if(len1 < len2)
         head1 = padList(head1, len2-len1);
     else
         head2 = padList(head2, len1-len2);
-    // cout << "LIST 1:: "; display(head1);
-    // cout << "LIST 2:: "; display(head2);
+        
     ListNode *head = sumListsUtil(head1, head2, carry);
-    // cout << "Carry : " << carry << endl;
     if(carry)
         head = insertAtHead(head, carry);
     return head;
