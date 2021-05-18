@@ -1,4 +1,4 @@
-/* Cracking the coding interview 6
+/* Cracking The Coding Interview 6
  * Problem 3.3 : Stack of Plates
  * You have an infinite number of stacks arranged in a row and numbered (left to right) from 0, 
  * each of the stacks has the same maximum capacity
